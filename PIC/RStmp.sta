@@ -1,0 +1,49 @@
+
+ROM used: 440 (1%)
+          440 (1%) including unused fragments
+
+          1 Average locations per line
+          5 Average locations per statement
+
+RAM used: 6 (0%) at main() level
+          12 (1%) worst case
+
+Stack used: 2 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   46    20  22  RStmp.c
+   14     0   0  RStmp.h
+  322     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+  144    69  78  ..\..\..\..\..\Program Files (x86)\PICC\drivers\ds1621.c
+----- -----
+  526    89 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     42   5   1             @delay_ms1
+0    198  22   1   514  5.2  MAIN
+0     14   2   0             @const96
+0     40   5   3             @DIV88
+0    108  12   2             @PRINTF_U_9600_31766_31767
+0     34   4   3             @PSTRINGCN_9600_31766_31767
+
+Program metrics:
+    Functions               1
+    Statements              89
+    Comments                107
+    Volume (V)              526
+    Difficilty (D)          4.6
+    Effort to implement (E) 2433
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    49
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07CBE   436  31496  
+
+
+

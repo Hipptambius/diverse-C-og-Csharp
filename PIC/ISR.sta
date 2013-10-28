@@ -1,0 +1,47 @@
+
+ROM used: 260 (1%)
+          260 (1%) including unused fragments
+
+          1 Average locations per line
+          65 Average locations per statement
+
+RAM used: 25 (2%) at main() level
+          26 (2%) worst case
+
+Stack used: 2 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   17     4 100  ISR.c
+   12     0   0  ISR.h
+  322     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+----- -----
+  351     4 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     42   8   1             @delay_ms1
+0     16   3   0    37  1.1  TIMER_isr
+0     32   6   0    50  1.5  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              4
+    Comments                80
+    Volume (V)              113
+    Difficilty (D)          2.4
+    Effort to implement (E) 272
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    120
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000AC   166  0  
+000AE-07CBE    90  31672  
+
+
+

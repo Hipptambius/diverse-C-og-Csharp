@@ -1,0 +1,26 @@
+[PROJECT]
+Target=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\RS232-kryds-mellem-2-boards.hex
+Development_Mode=
+Processor_Text=PIC18F252
+ToolSuite=CCS
+Processor=0x252F
+[C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\RS232-kryds-mellem-2-boards]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\RS232-kryds-mellem-2-boards.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\RS232-kryds-mellem-2-boards
+[Opened Files]
+1=RS232-kryds-mellem-2-boards.c
+2=
+3=RS232-kryds-mellem-2-boards.h
+4=

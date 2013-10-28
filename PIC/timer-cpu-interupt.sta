@@ -1,0 +1,47 @@
+
+ROM used: 266 (1%)
+          266 (1%) including unused fragments
+
+          1 Average locations per line
+          44 Average locations per statement
+
+RAM used: 25 (2%) at main() level
+          26 (2%) worst case
+
+Stack used: 2 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   32     6 100  timer-cpu-interupt.c
+   12     0   0  ISR.h
+  322     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+----- -----
+  366     6 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     42   8   1             @delay_ms1
+0     16   3   0    37  1.1  TIMER_isr
+0     38   7   0    88  1.7  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              6
+    Comments                105
+    Volume (V)              157
+    Difficilty (D)          2.6
+    Effort to implement (E) 412
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    82
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000AC   166  0  
+000AE-07CBE    96  31666  
+
+
+

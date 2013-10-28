@@ -1,0 +1,24 @@
+[PROJECT]
+Target=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232-kryds-uden-krystal.hex
+Development_Mode=
+Processor_Text=PIC18F252
+ToolSuite=CCS
+Processor=0x252F
+[C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232-kryds-uden-krystal]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232-kryds-uden-krystal.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232-kryds-uden-krystal
+[Opened Files]
+1=rs232-kryds-uden-krystal.c
+2=

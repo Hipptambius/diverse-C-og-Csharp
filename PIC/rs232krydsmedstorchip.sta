@@ -1,0 +1,52 @@
+
+ROM used: 312 (4%)
+          312 (4%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 7 (2%) at main() level
+          13 (4%) worst case
+
+Stack used: 2 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   45    20  22  rs232krydsmedstorchip.c
+   13     0   0  rs232krydsmedstorchip.h
+  302     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\16F877.h
+  144    69  78  ..\..\..\..\..\Program Files (x86)\PICC\drivers\ds1621.c
+----- -----
+  504    89 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     23   7   1             @delay_ms1
+0    118  38   1   514  5.2  MAIN
+0      7   2   0             @const95
+0     21   7   3             @DIV88
+0     56  18   2             @PRINTF_U_9600_62_63
+0     83  27   4             @PSTRINGCN7_9600_62_63
+
+Program metrics:
+    Functions               1
+    Statements              89
+    Comments                95
+    Volume (V)              526
+    Difficilty (D)          4.6
+    Effort to implement (E) 2433
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    93
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   308  1736  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01EFF     0  1792  
+
+
+

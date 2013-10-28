@@ -1,0 +1,32 @@
+////////////////////////
+// INTERUPT TIMER OPG.//
+// Programmering, PIC.// 
+// TEK, HOLMEN, 2013  //
+// Jimmy schach       //
+////////////////////////
+#include <ISR.h>
+//interupt RTCC=REAL TIME CLOCK CONTROLLER
+#int_RTCC
+
+//TIMER INTERUPT REQUEST,(VOID)=DU KAN IKKE OVERFØRE PARAMETRE
+void TIMER_isr(void)
+{
+   output_toggle(PIN_B0);
+   DELAY_MS(10);
+}
+/*CPU INTERN CLOCK=4MHZ DIVIDERET MED 4 =1MHZ
+CPU INTERN CLOCK I µS=1 DIVIDERET MED CPU INTERN CLOCK(1MHZ)=1µS
+TIDEN EFTER PRESCALE=CPU INTERN CLOCK(1µS) GANGE RTCC_DIV_64(64)=64µS
+TIDEN EFTER TIMEREN ER TALT OP(8BIT)=TIDEN EFTER 
+PRESCALE GANGE 8 BIT(256)=16384MS
+DVS. AT CPUEN BLIVER AFBRUDT CA. HVERT 16MS(16384MS) FOR AT KALDE 
+FUNKTIONEN TIMER0_isr
+*/
+void main()
+{
+   setup_adc_ports(AN0);
+   setup_timer_0(RTCC_INTERNAL|RTCC_DIV_64|RTCC_8_bit);
+   enable_interupts(INT_TIMER0);
+   enable_interupts(GLOBAL);
+  
+}

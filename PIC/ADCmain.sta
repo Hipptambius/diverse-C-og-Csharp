@@ -1,0 +1,44 @@
+
+ROM used: 382 (1%)
+          382 (1%) including unused fragments
+
+          1 Average locations per line
+          13 Average locations per statement
+
+RAM used: 5 (0%) at main() level
+          10 (1%) worst case
+
+Stack used: 1 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   47    29 100  ADCmain.c
+   12     0   0  ADCmain.h
+  322     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+----- -----
+  381    29 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   5   1             @delay_ms1
+0    338  44   1   723  2.4  main
+
+Program metrics:
+    Functions               1
+    Statements              29
+    Comments                98
+    Volume (V)              725
+    Difficilty (D)          2.4
+    Effort to implement (E) 1724
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    100
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07CBE   378  31554  
+
+
+

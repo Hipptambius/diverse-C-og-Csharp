@@ -1,0 +1,333 @@
+CCS PCH C Compiler, Version 4.115, 93510674               21-maj-13 13:27
+
+               Filename: C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\temp.lst
+
+               ROM used: 422 bytes (1%)
+                         Largest free fragment is 31514
+               RAM used: 7 (0%) at main() level
+                         10 (1%) worst case
+               Stack:    1 locations
+
+*
+0000:  GOTO   0088
+.................... //Jimmy schach 
+.................... //OPGAVE I C, TEK, HOLEM, 2013 
+.................... //TÆLLER TIL 8 BINÆRT OG GEMMER I EEPROM 
+.................... #include <temp.h> 
+.................... #include <18F252.h> 
+.................... //////// Standard Header file for the PIC18F252 device //////////////// 
+.................... #device PIC18F252 
+.................... #list 
+....................  
+.................... #device ICD=TRUE 
+.................... #device adc=16 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES WDT128                	//Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(clock=4000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  06
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  01
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  4A
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  BRA    0026
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETLW  00
+....................  
+....................  
+.................... int y=0; 
+.................... int x=4; 
+....................  
+.................... void lys(int a,int b,int c,int d) //diode output 
+.................... { 
+....................    output_bit(PIN_B0,a); 
+002C:  MOVF   06,F
+002E:  BNZ   0034
+0030:  BCF    F8A.0
+0032:  BRA    0036
+0034:  BSF    F8A.0
+0036:  BCF    F93.0
+....................    output_bit(PIN_B1,b); 
+0038:  MOVF   07,F
+003A:  BNZ   0040
+003C:  BCF    F8A.1
+003E:  BRA    0042
+0040:  BSF    F8A.1
+0042:  BCF    F93.1
+....................    output_bit(PIN_B2,c); 
+0044:  MOVF   08,F
+0046:  BNZ   004C
+0048:  BCF    F8A.2
+004A:  BRA    004E
+004C:  BSF    F8A.2
+004E:  BCF    F93.2
+....................    output_bit(PIN_B3,d); 
+0050:  MOVF   09,F
+0052:  BNZ   0058
+0054:  BCF    F8A.3
+0056:  BRA    005A
+0058:  BSF    F8A.3
+005A:  BCF    F93.3
+.................... } 
+005C:  RETLW  00
+.................... int tast() //tæller op ved return værdien 
+.................... { 
+005E:  MOVLW  01
+0060:  MOVWF  06
+.................... int q=1; 
+....................    while (q == 1) 
+....................    { 
+0062:  DECFSZ 06,W
+0064:  BRA    0080
+....................       if (input(PIN_A4) == 0) //trykket ned 
+0066:  BSF    F92.4
+0068:  BTFSC  F80.4
+006A:  BRA    0070
+....................       { 
+....................          y=1; 
+006C:  MOVLW  01
+006E:  MOVWF  04
+....................       } 
+....................       if (input(PIN_A4) == 1 && y == 1) //sluppet tasten 
+0070:  BSF    F92.4
+0072:  BTFSS  F80.4
+0074:  BRA    007E
+0076:  DECFSZ 04,W
+0078:  BRA    007E
+....................       { 
+....................          y=0; 
+007A:  CLRF   04
+....................          q = 0;       
+007C:  CLRF   06
+....................       } 
+....................     
+....................    } 
+007E:  BRA    0062
+.................... return 1; 
+0080:  MOVLW  01
+0082:  MOVWF  01
+.................... } 
+0084:  GOTO   016C (RETURN)
+....................  
+....................  
+.................... void main() 
+.................... { 
+0088:  CLRF   FF8
+008A:  BCF    FD0.7
+008C:  CLRF   FEA
+008E:  CLRF   FE9
+0090:  CLRF   04
+0092:  MOVLW  04
+0094:  MOVWF  05
+0096:  BSF    FC1.0
+0098:  BSF    FC1.1
+009A:  BSF    FC1.2
+009C:  BCF    FC1.3
+....................    while (TRUE) 
+....................    {   
+....................       x=read_eeprom(20); // læser fra eeprom 
+009E:  MOVFF  FF2,06
+00A2:  BCF    FF2.7
+00A4:  MOVLW  14
+00A6:  MOVWF  FA9
+00A8:  BCF    FA6.6
+00AA:  BCF    FA6.7
+00AC:  BSF    FA6.0
+00AE:  MOVF   FA8,W
+00B0:  BTFSC  06.7
+00B2:  BSF    FF2.7
+00B4:  MOVWF  05
+....................       delay_ms(100); 
+00B6:  MOVLW  64
+00B8:  MOVWF  06
+00BA:  RCALL  0004
+....................        
+....................       if (x==0) 
+00BC:  MOVF   05,F
+00BE:  BNZ   00CA
+....................       { 
+....................          lys(0,0,0,0); 
+00C0:  CLRF   06
+00C2:  CLRF   07
+00C4:  CLRF   08
+00C6:  CLRF   09
+00C8:  RCALL  002C
+....................       } 
+....................       if (x==1) 
+00CA:  DECFSZ 05,W
+00CC:  BRA    00DA
+....................       { 
+....................          lys(1,0,0,0);    
+00CE:  MOVLW  01
+00D0:  MOVWF  06
+00D2:  CLRF   07
+00D4:  CLRF   08
+00D6:  CLRF   09
+00D8:  RCALL  002C
+....................       } 
+....................       if (x==2) 
+00DA:  MOVF   05,W
+00DC:  SUBLW  02
+00DE:  BNZ   00EC
+....................       { 
+....................          lys(0,1,0,0);    
+00E0:  CLRF   06
+00E2:  MOVLW  01
+00E4:  MOVWF  07
+00E6:  CLRF   08
+00E8:  CLRF   09
+00EA:  RCALL  002C
+....................       } 
+....................       if (x==3) 
+00EC:  MOVF   05,W
+00EE:  SUBLW  03
+00F0:  BNZ   00FE
+....................       { 
+....................          lys(1,1,0,0);    
+00F2:  MOVLW  01
+00F4:  MOVWF  06
+00F6:  MOVWF  07
+00F8:  CLRF   08
+00FA:  CLRF   09
+00FC:  RCALL  002C
+....................       } 
+....................       if (x==4) 
+00FE:  MOVF   05,W
+0100:  SUBLW  04
+0102:  BNZ   0110
+....................       { 
+....................          lys(0,0,1,0);    
+0104:  CLRF   06
+0106:  CLRF   07
+0108:  MOVLW  01
+010A:  MOVWF  08
+010C:  CLRF   09
+010E:  RCALL  002C
+....................       } 
+....................       if (x==5) 
+0110:  MOVF   05,W
+0112:  SUBLW  05
+0114:  BNZ   0122
+....................       { 
+....................          lys(1,0,1,0);    
+0116:  MOVLW  01
+0118:  MOVWF  06
+011A:  CLRF   07
+011C:  MOVWF  08
+011E:  CLRF   09
+0120:  RCALL  002C
+....................       } 
+....................       if (x==6) 
+0122:  MOVF   05,W
+0124:  SUBLW  06
+0126:  BNZ   0134
+....................       { 
+....................          lys(0,1,1,0);    
+0128:  CLRF   06
+012A:  MOVLW  01
+012C:  MOVWF  07
+012E:  MOVWF  08
+0130:  CLRF   09
+0132:  RCALL  002C
+....................       } 
+....................       if (x==7) 
+0134:  MOVF   05,W
+0136:  SUBLW  07
+0138:  BNZ   0146
+....................       { 
+....................          lys(1,1,1,0);    
+013A:  MOVLW  01
+013C:  MOVWF  06
+013E:  MOVWF  07
+0140:  MOVWF  08
+0142:  CLRF   09
+0144:  RCALL  002C
+....................       } 
+....................       if (x==8) 
+0146:  MOVF   05,W
+0148:  SUBLW  08
+014A:  BNZ   0158
+....................       { 
+....................          lys(0,0,0,1);    
+014C:  CLRF   06
+014E:  CLRF   07
+0150:  CLRF   08
+0152:  MOVLW  01
+0154:  MOVWF  09
+0156:  RCALL  002C
+....................       } 
+....................       if (x>8) 
+0158:  MOVF   05,W
+015A:  SUBLW  08
+015C:  BC    016A
+....................       { 
+....................          x=0; 
+015E:  CLRF   05
+....................          lys(0,0,0,0); 
+0160:  CLRF   06
+0162:  CLRF   07
+0164:  CLRF   08
+0166:  CLRF   09
+0168:  RCALL  002C
+....................       } 
+....................       x = x+tast(); 
+016A:  BRA    005E
+016C:  MOVF   01,W
+016E:  ADDWF  05,F
+....................   
+....................       write_eeprom(20,x); //skriver til eeprom 
+0170:  MOVLW  14
+0172:  MOVWF  FA9
+0174:  MOVFF  05,FA8
+0178:  BCF    FA6.6
+017A:  BCF    FA6.7
+017C:  BSF    FA6.2
+017E:  MOVF   FF2,W
+0180:  MOVWF  00
+0182:  BCF    FF2.7
+0184:  MOVLB  F
+0186:  MOVLW  55
+0188:  MOVWF  FA7
+018A:  MOVLW  AA
+018C:  MOVWF  FA7
+018E:  BSF    FA6.1
+0190:  BTFSC  FA6.1
+0192:  BRA    0190
+0194:  BCF    FA6.2
+0196:  MOVF   00,W
+0198:  IORWF  FF2,F
+....................       delay_ms(100);       
+019A:  MOVLW  64
+019C:  MOVWF  06
+019E:  MOVLB  0
+01A0:  RCALL  0004
+....................    } 
+01A2:  BRA    009E
+.................... }    
+01A4:  BRA    01A4
+
+Configuration Fuses:
+   Word  1: 2700   RC_IO NOOSCSEN
+   Word  2: 0E0D   NOPUT NOBROWNOUT BORV20 NOWDT WDT128
+   Word  3: 0100   CCP2C1
+   Word  4: 0001   STVREN NOLVP DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.

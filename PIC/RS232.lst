@@ -1,0 +1,93 @@
+CCS PCH C Compiler, Version 4.115, 93510674               16-maj-13 10:54
+
+               Filename: C:\Users\Jimmy\Desktop\Arbejde-programmering\RS232.lst
+
+               ROM used: 280 bytes (1%)
+                         Largest free fragment is 31656
+               RAM used: 5 (0%) at main() level
+                         10 (1%) worst case
+               Stack:    2 locations
+
+*
+0000:  GOTO   00CC
+.................... #include <RS232.h> 
+.................... #include <18F252.h> 
+.................... //////// Standard Header file for the PIC18F252 device //////////////// 
+.................... #device PIC18F252 
+.................... #list 
+....................  
+.................... #device ICD=TRUE 
+.................... #device adc=16 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES WDT128                	//Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(clock=4000000) 
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8,stream=PORT1) 
+....................  
+....................  
+....................  
+....................  
+.................... void main() 
+.................... { 
+00CC:  CLRF   FF8
+00CE:  BCF    FD0.7
+00D0:  CLRF   FEA
+00D2:  CLRF   FE9
+00D4:  MOVLW  19
+00D6:  MOVWF  FAF
+00D8:  MOVLW  A6
+00DA:  MOVWF  FAC
+00DC:  MOVLW  90
+00DE:  MOVWF  FAB
+00E0:  BSF    FC1.0
+00E2:  BSF    FC1.1
+00E4:  BSF    FC1.2
+00E6:  BCF    FC1.3
+00E8:  MOVLW  67
+00EA:  MOVWF  05
+.................... int8 kursusnr = 103; 
+....................     
+....................    while (TRUE) 
+....................    { 
+....................       printf("I LOVE TEK%u\n\r",kursusnr); 
+00EC:  MOVLW  04
+00EE:  MOVWF  FF6
+00F0:  MOVLW  00
+00F2:  MOVWF  FF7
+00F4:  MOVLW  0A
+00F6:  MOVWF  06
+00F8:  BRA    0014
+00FA:  MOVFF  05,06
+00FE:  MOVLW  1B
+0100:  MOVWF  07
+0102:  BRA    005E
+0104:  MOVLW  0A
+0106:  BTFSS  F9E.4
+0108:  BRA    0106
+010A:  MOVWF  FAD
+010C:  MOVLW  0D
+010E:  BTFSS  F9E.4
+0110:  BRA    010E
+0112:  MOVWF  FAD
+....................        
+....................    } 
+0114:  BRA    00EC
+....................  
+....................  
+....................  
+.................... } 
+0116:  BRA    0116
+
+Configuration Fuses:
+   Word  1: 2700   RC_IO NOOSCSEN
+   Word  2: 0E0D   NOPUT NOBROWNOUT BORV20 NOWDT WDT128
+   Word  3: 0100   CCP2C1
+   Word  4: 0001   STVREN NOLVP DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.

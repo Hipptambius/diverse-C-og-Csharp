@@ -1,0 +1,346 @@
+CCS PCH C Compiler, Version 4.115, 93510674               22-maj-13 12:53
+
+               Filename: C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\temp2.lst
+
+               ROM used: 394 bytes (1%)
+                         Largest free fragment is 31542
+               RAM used: 6 (0%) at main() level
+                         12 (1%) worst case
+               Stack:    2 locations
+
+*
+0000:  GOTO   00C2
+.................... #include <temp2.h> 
+.................... #include <18F252.h> 
+.................... //////// Standard Header file for the PIC18F252 device //////////////// 
+.................... #device PIC18F252 
+.................... #list 
+....................  
+.................... #device ICD=TRUE 
+.................... #device adc=16 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES WDT128                	//Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(clock=4000000) 
+009A:  CLRF   FEA
+009C:  MOVLW  08
+009E:  MOVWF  FE9
+00A0:  MOVF   FEF,W
+00A2:  BZ    00C0
+00A4:  MOVLW  01
+00A6:  MOVWF  01
+00A8:  CLRF   00
+00AA:  DECFSZ 00,F
+00AC:  BRA    00AA
+00AE:  DECFSZ 01,F
+00B0:  BRA    00A8
+00B2:  MOVLW  4A
+00B4:  MOVWF  00
+00B6:  DECFSZ 00,F
+00B8:  BRA    00B6
+00BA:  BRA    00BC
+00BC:  DECFSZ FEF,F
+00BE:  BRA    00A4
+00C0:  RETLW  00
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8,stream=PORT1) 
+....................  
+....................  
+.................... #include <ds1621.c> 
+.................... //////////////////////////////////////////////////////////////////////////// 
+.................... ////   Library for a Dallas 1621 Temperature chip                       //// 
+.................... ////                                                                    //// 
+.................... ////   init_temp();          Call before the other functions are used   //// 
+.................... ////                                                                    //// 
+.................... ////   d = read_high_temp(); Read the temperature in degrees F (0-255)  //// 
+.................... ////                                                                    //// 
+.................... ////   d = read_low_temp();  Read the temp in degrees F (-67 to 127)    //// 
+.................... ////                                                                    //// 
+.................... ////   d = read_full_temp(); Read the temp in degrees F (-67 to 257)    //// 
+.................... ////                                                                    //// 
+.................... //////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services            //// 
+.................... //// This source code may only be used by licensed users of the CCS C   //// 
+.................... //// compiler.  This source code may only be distributed to other       //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction  //// 
+.................... //// or distribution is permitted without written permission.           //// 
+.................... //// Derivative programs created using this software in object code     //// 
+.................... //// form are not restricted in any way.                                //// 
+.................... //////////////////////////////////////////////////////////////////////////// 
+....................  
+....................  
+.................... #ifndef DAL_SCL 
+.................... #define DAL_SCL PIN_B0 
+.................... #define DAL_SDA PIN_B1 
+.................... #endif 
+....................  
+.................... #define read_temp    read_high_temp // for backwards compatability 
+....................  
+.................... #use i2c(master,sda=DAL_SDA, scl=DAL_SCL) 
+....................  
+....................  
+.................... void temp_config(BYTE data) { 
+....................  
+....................    i2c_start(); 
+....................    i2c_write(0x90); 
+....................    i2c_write(0xac); 
+....................    i2c_write(data); 
+....................    i2c_stop(); 
+.................... } 
+....................  
+....................  
+.................... void init_temp() { 
+....................    output_high(DAL_SDA); 
+....................    output_high(DAL_SCL); 
+....................    i2c_start(); 
+....................    i2c_write(0x90); 
+....................    i2c_write(0xee); 
+....................    i2c_stop(); 
+....................    temp_config(8); 
+.................... } 
+....................  
+....................  
+.................... BYTE read_high_temp() {        // Returns degrees F (0-255) 
+....................    BYTE datah,datal; 
+....................    signed long data; 
+....................  
+....................    i2c_start(); 
+....................    i2c_write(0x90); 
+....................    i2c_write(0xaa); 
+....................    i2c_start(); 
+....................    i2c_write(0x91); 
+....................    datah=i2c_read(); 
+....................    datal=i2c_read(0); 
+....................    i2c_stop(); 
+....................  
+....................    data=datah; 
+....................    data=data*9; 
+....................    if(bit_test(datal,7)) 
+....................    { 
+....................       if(data < 0) 
+....................           data -= 4; 
+....................       else 
+....................          data += 4; 
+....................    } 
+....................    data=(data/5)+32; 
+....................  
+....................    if(data < 0) 
+....................       data = 0; 
+....................    else if(data > 255) 
+....................       data = 255; 
+....................  
+....................    return((int)data); 
+.................... } 
+....................  
+....................  
+.................... signed int read_low_temp() {  // Returns degrees F (-67 to 127) 
+....................    signed int datah, datal; 
+....................    signed long data; 
+....................  
+....................    i2c_start(); 
+....................    i2c_write(0x90); 
+....................    i2c_write(0xaa); 
+....................    i2c_start(); 
+....................    i2c_write(0x91); 
+....................    datah=i2c_read(); 
+....................    datal=i2c_read(0); 
+....................    i2c_stop(); 
+....................  
+....................    data=datah; 
+....................    data=data*9; 
+....................    if(bit_test(datal,7)) 
+....................    { 
+....................       if(data < 0) 
+....................           data -= 4; 
+....................       else 
+....................          data += 4; 
+....................    } 
+....................    data = (data / 5) + 32; 
+....................  
+....................    if(data > 127) 
+....................       data = 127; 
+....................  
+....................    return((int)data); 
+.................... } 
+....................  
+....................  
+.................... signed long read_full_temp() {  // Returns degrees F (-67 to 257) 
+....................    signed int datah, datal; 
+....................    signed long data; 
+....................  
+....................    i2c_start(); 
+....................    i2c_write(0x90); 
+....................    i2c_write(0xaa); 
+....................    i2c_start(); 
+....................    i2c_write(0x91); 
+....................    datah=i2c_read(); 
+....................    datal=i2c_read(0); 
+....................    i2c_stop(); 
+....................  
+....................    data=datah; 
+....................    data=data*9; 
+....................    if(bit_test(datal,7)) 
+....................    { 
+....................       if(data < 0) 
+....................           data -= 4; 
+....................       else 
+....................          data += 4; 
+....................    } 
+....................    data = (data / 5) + 32; 
+....................  
+....................    return(data); 
+.................... } 
+....................  
+.................... //RS232 KRYDS MELLEM 2 BOARDS, UDLÆSNING OG INDLÆSNING 
+.................... //TEK, HOLMEN 2013 
+.................... //JIMMY SCHACH 
+.................... int x=0; 
+....................  
+....................  
+.................... void main() 
+.................... { 
+00C2:  CLRF   FF8
+00C4:  BCF    FD0.7
+00C6:  CLRF   FEA
+00C8:  CLRF   FE9
+00CA:  MOVLW  19
+00CC:  MOVWF  FAF
+00CE:  MOVLW  A6
+00D0:  MOVWF  FAC
+00D2:  MOVLW  90
+00D4:  MOVWF  FAB
+00D6:  CLRF   04
+00D8:  BSF    FC1.0
+00DA:  BSF    FC1.1
+00DC:  BSF    FC1.2
+00DE:  BCF    FC1.3
+....................    setup_adc(ADC_CLOCK_INTERNAL); 
+00E0:  BCF    FC1.6
+00E2:  BSF    FC2.6
+00E4:  BSF    FC2.7
+00E6:  BCF    FC1.7
+00E8:  BSF    FC2.0
+....................    setup_adc_ports(ALL_ANALOG); 
+00EA:  BCF    FC1.0
+00EC:  BCF    FC1.1
+00EE:  BCF    FC1.2
+00F0:  BCF    FC1.3
+....................    set_adc_channel(0); 
+00F2:  MOVLW  00
+00F4:  MOVWF  01
+00F6:  MOVF   FC2,W
+00F8:  ANDLW  C7
+00FA:  IORWF  01,W
+00FC:  MOVWF  FC2
+....................     int in; 
+....................    while (true) 
+....................    { 
+....................       //Udlæsning fra analog potmeter 
+....................       int A=READ_ADC(); 
+00FE:  BSF    FC2.2
+0100:  BTFSC  FC2.2
+0102:  BRA    0100
+0104:  MOVFF  FC3,06
+....................        
+....................       //udlæsning til rs232 
+....................      for (x=0;x<10;x++) 
+0108:  CLRF   04
+010A:  MOVF   04,W
+010C:  SUBLW  09
+010E:  BNC   013C
+....................       { 
+....................          printf("%u\n\r",A); 
+0110:  MOVFF  06,07
+0114:  MOVLW  1B
+0116:  MOVWF  08
+0118:  BRA    002C
+011A:  MOVLW  0A
+011C:  BTFSS  F9E.4
+011E:  BRA    011C
+0120:  MOVWF  FAD
+0122:  MOVLW  0D
+0124:  BTFSS  F9E.4
+0126:  BRA    0124
+0128:  MOVWF  FAD
+....................          delay_ms(300);  
+012A:  MOVLW  02
+012C:  MOVWF  07
+012E:  MOVLW  96
+0130:  MOVWF  08
+0132:  RCALL  009A
+0134:  DECFSZ 07,F
+0136:  BRA    012E
+....................       }      
+0138:  INCF   04,F
+013A:  BRA    010A
+....................       //modtag input fra rs232      
+....................       
+....................       for (x=0;x<10;x++) 
+013C:  CLRF   04
+013E:  MOVF   04,W
+0140:  SUBLW  09
+0142:  BNC   0154
+....................       { 
+....................          if(kbhit())  
+0144:  BTFSS  F9E.5
+0146:  BRA    0150
+....................          { 
+....................             in = getch(); 
+0148:  BTFSS  F9E.5
+014A:  BRA    0148
+014C:  MOVFF  FAE,05
+....................          } 
+....................       } 
+0150:  INCF   04,F
+0152:  BRA    013E
+....................       //printf((int)in); 
+....................       output_toggle(PIN_C2); 
+0154:  BCF    F94.2
+0156:  BTG    F8B.2
+....................       delay_ms(in); 
+0158:  MOVFF  05,08
+015C:  RCALL  009A
+....................       output_toggle(PIN_C2); 
+015E:  BCF    F94.2
+0160:  BTG    F8B.2
+....................       delay_ms(in); 
+0162:  MOVFF  05,08
+0166:  RCALL  009A
+....................       output_toggle(PIN_C2); 
+0168:  BCF    F94.2
+016A:  BTG    F8B.2
+....................       delay_ms(in); 
+016C:  MOVFF  05,08
+0170:  RCALL  009A
+....................       output_toggle(PIN_C2); 
+0172:  BCF    F94.2
+0174:  BTG    F8B.2
+....................       delay_ms(in); 
+0176:  MOVFF  05,08
+017A:  RCALL  009A
+....................       output_toggle(PIN_C2); 
+017C:  BCF    F94.2
+017E:  BTG    F8B.2
+....................       delay_ms(in); 
+0180:  MOVFF  05,08
+0184:  RCALL  009A
+....................        
+....................    } 
+0186:  BRA    00FE
+....................  
+....................  
+.................... } 
+0188:  BRA    0188
+
+Configuration Fuses:
+   Word  1: 2700   RC_IO NOOSCSEN
+   Word  2: 0E0D   NOPUT NOBROWNOUT BORV20 NOWDT WDT128
+   Word  3: 0100   CCP2C1
+   Word  4: 0001   STVREN NOLVP DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.

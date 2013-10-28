@@ -1,0 +1,25 @@
+[PROJECT]
+Target=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232krydsmedstorchip.hex
+Development_Mode=
+Processor_Text=PIC16F877
+ToolSuite=CCS
+Processor=0x877F
+[C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232krydsmedstorchip]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232krydsmedstorchip.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\rs232krydsmedstorchip
+[Opened Files]
+1=rs232krydsmedstorchip.c
+2=..\..\..\..\..\Program Files (x86)\PICC\devices\16F877.h
+3=

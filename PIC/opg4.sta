@@ -1,0 +1,44 @@
+
+ROM used: 326 (1%)
+          326 (1%) including unused fragments
+
+          1 Average locations per line
+          11 Average locations per statement
+
+RAM used: 9 (1%) at main() level
+          10 (1%) worst case
+
+Stack used: 1 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   47    30 100  opg4.c
+   12     0   0  opg4.h
+  322     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+----- -----
+  381    30 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   6   1             @delay_ms1
+0    282  43   1   691  4.3  main
+
+Program metrics:
+    Functions               1
+    Statements              30
+    Comments                80
+    Volume (V)              693
+    Difficilty (D)          4.3
+    Effort to implement (E) 2947
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   4
+    Maintainability (MI)    129
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07CBE   322  31610  
+
+
+

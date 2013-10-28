@@ -1,0 +1,47 @@
+
+ROM used: 378 (1%)
+          378 (1%) including unused fragments
+
+          1 Average locations per line
+          4 Average locations per statement
+
+RAM used: 6 (0%) at main() level
+          12 (1%) worst case
+
+Stack used: 2 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   51    25  27  RS232-kryds-mellem-2-boards.c
+   13     0   0  RS232-kryds-mellem-2-boards.h
+  322     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+  144    69  73  ..\..\..\..\..\Program Files (x86)\PICC\drivers\ds1621.c
+----- -----
+  530    94 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   5   1             @delay_ms1
+0    184  24   1   673  4.8  MAIN
+0     40   5   3             @DIV88
+0    110  15   2             @PRINTF_U_9600_31766_31767
+
+Program metrics:
+    Functions               1
+    Statements              94
+    Comments                108
+    Volume (V)              681
+    Difficilty (D)          4.5
+    Effort to implement (E) 3093
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    44
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07CBE   374  31558  
+
+
+

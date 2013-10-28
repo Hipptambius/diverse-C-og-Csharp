@@ -1,0 +1,73 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     x
+005     MAIN.in
+006     A
+007     @PRINTF_U_9600_31766_31767.P1
+007     MAIN.@SCRATCH1
+008     @PRINTF_U_9600_31766_31767.P1
+008     @delay_ms1.P2
+009     @DIV88.P1
+00A     @DIV88.P1
+00B     @DIV88.@SCRATCH1
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+009A  @delay_ms1
+00C2  MAIN
+0004  @DIV88
+002C  @PRINTF_U_9600_31766_31767
+00C2  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\
+
+Project Files:
+    RS232-kryds-mellem-2-boards.c
+    RS232-kryds-mellem-2-boards.h
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+    ..\..\..\..\..\Program Files (x86)\PICC\drivers\ds1621.c
+
+Units:
+    C:\Users\Jimmy\Desktop\Arbejde-programmering\Opgaver\RS232-kryds-mellem-2-boards (main)
+
+Compiler Settings:
+    Processor:      PIC18F252
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    ICD Provisions: Yes
+
+Output Files:
+    Errors:      RS232-kryds-mellem-2-boards.h.err
+    Ext Symbols: RS232-kryds-mellem-2-boards.esym
+    INHX32:      RS232-kryds-mellem-2-boards.hex
+    Symbols:     RS232-kryds-mellem-2-boards.sym
+    List:        RS232-kryds-mellem-2-boards.lst
+    Debug/COFF:  RS232-kryds-mellem-2-boards.cof
+    Project:     RS232-kryds-mellem-2-boards.PJT
+    Call Tree:   RS232-kryds-mellem-2-boards.tre
+    Statistics:  RS232-kryds-mellem-2-boards.sta

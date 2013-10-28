@@ -1,0 +1,5 @@
+ÀÄtimer-cpu-interupt
+   ÃÄMAIN  0/38  Ram=0
+   ³  ÀÄ??0??
+   ÀÄTIMER_isr  0/16  Ram=0
+      ÀÄ@delay_ms1  0/42  Ram=1

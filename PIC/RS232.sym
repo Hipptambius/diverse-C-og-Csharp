@@ -1,0 +1,72 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.kursusnr
+006     @PSTRINGCN_9600_31766_31767.P1
+006     @PRINTF_U_9600_31766_31767.P2
+007     @PRINTF_U_9600_31766_31767.P1
+007     @PSTRINGCN_9600_31766_31767.@SCRATCH1
+008     @DIV88.P1
+008     @PSTRINGCN_9600_31766_31767.@SCRATCH2
+009     @DIV88.P1
+00A     @DIV88.@SCRATCH1
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+00CC  main
+0004  @const69
+0014  @PSTRINGCN_9600_31766_31767
+0036  @DIV88
+005E  @PRINTF_U_9600_31766_31767
+00CC  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Jimmy\Desktop\Arbejde-programmering\
+
+Project Files:
+    RS232.c
+    RS232.h
+    ..\..\..\..\Program Files (x86)\PICC\devices\18F252.h
+
+Units:
+    C:\Users\Jimmy\Desktop\Arbejde-programmering\RS232 (main)
+
+Compiler Settings:
+    Processor:      PIC18F252
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    ICD Provisions: Yes
+
+Output Files:
+    Errors:      RS232.err
+    Ext Symbols: RS232.esym
+    INHX32:      RS232.hex
+    Symbols:     RS232.sym
+    List:        RS232.lst
+    Debug/COFF:  RS232.cof
+    Project:     RS232.PJT
+    Call Tree:   RS232.tre
+    Statistics:  RS232.sta

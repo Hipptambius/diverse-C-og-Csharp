@@ -1,0 +1,61 @@
+
+ROM used: 375 (5%)
+          375 (5%) including unused fragments
+
+          0 Average locations per line
+          2 Average locations per statement
+
+RAM used: 7 (2%) at main() level
+          20 (6%) worst case
+
+Stack used: 4 worst case (out of 7 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   29     4   2  LCD-OPGAVE1.c
+   12     0   0  LCD-OPGAVE1.h
+  302     0   0  ..\..\..\..\..\Program Files (x86)\PICC\devices\16F877.h
+  409   121  63  ..\..\..\..\..\Program Files (x86)\PICC\drivers\string.h
+   32     0   0  ..\..\..\..\..\Program Files (x86)\PICC\drivers\stddef.h
+   28     0   0  ..\..\..\..\..\Program Files (x86)\PICC\drivers\ctype.h
+  233    68  35  rene_lcd.c
+----- -----
+ 1045   193 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   6   1             @delay_ms1
+0      8   2   0             @const155
+0     41  11   1   328  2.7  lcd_send_nibble
+0     37  10   1   362  2.3  lcd_read_nibble
+ Inline        3   165  3.3  lcd_read_byte
+0     61  16   3   319  4.1  lcd_send_byte
+0     48  13   2   384  4.4  lcd_init
+ Inline        4   186  5.5  lcd_gotoxy
+0     54  14   1   275  3.9  lcd_putc
+0     22   6   0    56  1.6  MAIN
+0      7   2   0             @const185
+0     72  19   3             @PSTRINGC7_177
+
+Program metrics:
+    Functions               8
+    Statements              193
+    Comments                247
+    Volume (V)              3259
+    Difficilty (D)          27.2
+    Effort to implement (E) 88760
+    Time to implement (T)   1 hours, 22 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   8
+    Maintainability (MI)    124
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   371  1673  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01EFF     0  1792  
+
+
+
